@@ -1,0 +1,24 @@
+{
+    "name": "saintkappa-api",
+    "version": "0.1.0",
+    "description": "An attempt at creating my own Rest API. Mainly for personal use.",
+    "author": "SaintKappa",
+    "license": "BSD-2-Clause",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "bun run --watch src/index.ts"
+    },
+    "dependencies": {
+        "@elysiajs/cors": "^0.7.1",
+        "@elysiajs/html": "^0.7.3",
+        "@elysiajs/static": "^0.7.1",
+        "@elysiajs/swagger": "^0.7.4",
+        "elysia": "latest",
+        "elysia-rate-limit": "^1.2.0",
+        "mongoose": "^7.6.3"
+    },
+    "devDependencies": {
+        "bun-types": "latest"
+    },
+    "module": "src/index.js"
+}
