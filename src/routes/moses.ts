@@ -3,9 +3,9 @@ import { PipelineStage } from "mongoose";
 import Pic, { IPic } from "../models/pic.schema";
 import Quote, { IQuote } from "../models/quote.schema";
 
-const tags = ["Moses"];
+const tags = ["Ⓜ️ Moses"];
 const querySchema = t.Object({
-    id: t.Optional(t.String()),
+    id: t.Optional(t.Numeric()),
     sort: t.Optional(t.Union([t.Literal("asc"), t.Literal("desc")])),
     limit: t.Optional(t.Numeric()),
 });
@@ -13,8 +13,6 @@ const excludeFields: PipelineStage = { $project: { _id: 0 } };
 
 const moses = (app: Elysia) => {
     return app
-        .get("/", ({ set }) => (set.redirect = "https://discord.com/invite/cHs56zgFBy"), { detail: { tags, description: "Redirect to the Moses Cult discord server" } })
-
         .get(
             "/quotes",
             async ({ query }) => {
@@ -28,7 +26,7 @@ const moses = (app: Elysia) => {
             },
             {
                 query: querySchema,
-                detail: { tags, description: "Get all Moses quotes" },
+                detail: { tags, summary: "Get all the Moses quotes." },
             }
         )
         .get(
@@ -40,7 +38,7 @@ const moses = (app: Elysia) => {
                 const quote = await Quote.aggregate<IQuote>(pipeline);
                 return quote[0];
             },
-            { detail: { tags, description: "Get a random Moses quote" } }
+            { detail: { tags, summary: "Get a random Moses quote." } }
         )
 
         .get(
@@ -56,7 +54,7 @@ const moses = (app: Elysia) => {
             },
             {
                 query: querySchema,
-                detail: { tags, description: "Get all Moses pics" },
+                detail: { tags, summary: "Get all the Moses pics." },
             }
         )
         .get(
@@ -68,7 +66,7 @@ const moses = (app: Elysia) => {
                 const pic = await Pic.aggregate<IPic>(pipeline);
                 return pic[0];
             },
-            { detail: { tags, description: "Get a random Moses pic" } }
+            { detail: { tags, summary: "Get a random Moses pic." } }
         );
 };
 

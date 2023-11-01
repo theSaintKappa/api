@@ -6,7 +6,8 @@
     "license": "BSD-2-Clause",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "bun run --watch src/index.ts"
+        "dev": "bun run --watch ./src/index.ts",
+        "build": "bun build ./src/index.ts --outdir ./dist --minify --target bun"
     },
     "dependencies": {
         "@elysiajs/cors": "^0.7.1",
@@ -15,7 +16,9 @@
         "@elysiajs/swagger": "^0.7.4",
         "elysia": "latest",
         "elysia-rate-limit": "^1.2.0",
-        "mongoose": "^7.6.3"
+        "jimp": "^0.22.10",
+        "mongoose": "^8.0.0",
+        "vulcan-api-js": "^3.3.0"
     },
     "devDependencies": {
         "bun-types": "latest"
