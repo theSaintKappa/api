@@ -1,7 +1,8 @@
 import { Elysia, t } from "elysia";
 import { PipelineStage } from "mongoose";
-import Pic, { IPic } from "../models/pic.schema";
-import Quote, { IQuote } from "../models/quote.schema";
+import { IMosesPic, IMosesQuote } from "../db";
+import MosesPic from "../models/pic.schema";
+import MosesQuote from "../models/quote.schema";
 
 const tags = ["Ⓜ️ Moses"];
 const querySchema = t.Object({
@@ -11,17 +12,21 @@ const querySchema = t.Object({
 });
 const excludeFields: PipelineStage = { $project: { _id: 0 } };
 
-const moses = (app: Elysia) => {
-    return app
+const moses = (app: Elysia) =>
+    app
         .get(
             "/quotes",
             async ({ query }) => {
-                const pipeline: PipelineStage[] = [excludeFields, { $sample: { size: await Quote.estimatedDocumentCount() } }];
+                const pipeline: PipelineStage[] = [excludeFields];
+
                 if (query.id) pipeline.push({ $match: { id: query.id } });
+
                 if (query.sort) pipeline.push({ $sort: { id: query.sort === "asc" ? 1 : -1 } });
+                else pipeline.push({ $sample: { size: await MosesQuote.estimatedDocumentCount() } });
+
                 if (query.limit) pipeline.push({ $limit: query.limit });
 
-                const quotes = await Quote.aggregate<IQuote>(pipeline);
+                const quotes = await MosesQuote.aggregate<IMosesQuote>(pipeline);
                 return quotes;
             },
             {
@@ -35,7 +40,7 @@ const moses = (app: Elysia) => {
                 const pipeline: PipelineStage[] = [excludeFields];
                 pipeline.push({ $sample: { size: 1 } });
 
-                const quote = await Quote.aggregate<IQuote>(pipeline);
+                const quote = await MosesQuote.aggregate<IMosesQuote>(pipeline);
                 return quote[0];
             },
             { detail: { tags, summary: "Get a random Moses quote." } }
@@ -44,12 +49,15 @@ const moses = (app: Elysia) => {
         .get(
             "/pics",
             async ({ query }) => {
-                const pipeline: PipelineStage[] = [excludeFields, { $sample: { size: await Pic.estimatedDocumentCount() } }];
+                const pipeline: PipelineStage[] = [excludeFields, { $sample: { size: await MosesPic.estimatedDocumentCount() } }];
+
                 if (query.id) pipeline.push({ $match: { id: query.id } });
+
                 if (query.sort) pipeline.push({ $sort: { createdAt: query.sort === "asc" ? 1 : -1 } });
+
                 if (query.limit) pipeline.push({ $limit: query.limit });
 
-                const pics = await Pic.aggregate<IPic>(pipeline);
+                const pics = await MosesPic.aggregate<IMosesPic>(pipeline);
                 return pics;
             },
             {
@@ -63,11 +71,10 @@ const moses = (app: Elysia) => {
                 const pipeline: PipelineStage[] = [excludeFields];
                 pipeline.push({ $sample: { size: 1 } });
 
-                const pic = await Pic.aggregate<IPic>(pipeline);
+                const pic = await MosesPic.aggregate<IMosesPic>(pipeline);
                 return pic[0];
             },
             { detail: { tags, summary: "Get a random Moses pic." } }
         );
-};
 
 export default moses;

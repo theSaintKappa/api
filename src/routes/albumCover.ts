@@ -3,8 +3,8 @@ import Jimp from "jimp";
 
 const tags = ["✨ Fun"];
 
-const albumCover = (app: Elysia) => {
-    return app.post(
+const albumCover = (app: Elysia) =>
+    app.post(
         "/",
         async ({ body }) => {
             const buffer = await body.image.arrayBuffer();
@@ -27,6 +27,5 @@ const albumCover = (app: Elysia) => {
             detail: { tags, summary: "Everything can be an album cover" },
         }
     );
-};
 
 export default albumCover;

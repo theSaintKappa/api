@@ -5,9 +5,7 @@ import { swagger } from "@elysiajs/swagger";
 import { Elysia } from "elysia";
 import { rateLimit } from "elysia-rate-limit";
 import packageJson from "../package.json";
-
-import "./db.setup";
-
+import "./db";
 import albumCover from "./routes/albumCover";
 import moses from "./routes/moses";
 import vulcan from "./routes/vulcan";
@@ -19,7 +17,6 @@ const app: Elysia = new Elysia()
             duration: 60000,
             max: 100,
             responseMessage: "Whoa there, slow down. You can only make 100 requests per minute.",
-            generator: (request) => app.server?.requestIP(request)?.address || "",
         })
     )
     .use(

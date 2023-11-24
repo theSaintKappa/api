@@ -1,13 +1,7 @@
-import { Document, Schema, model } from "mongoose";
-import { DocumentTimestamps } from "../db.setup";
+import { Schema, model } from "mongoose";
+import { IMosesQuote } from "../db";
 
-export interface IQuote extends Document, DocumentTimestamps {
-    id: number;
-    content: string;
-    submitterId: string;
-}
-
-const schema = new Schema<IQuote>(
+const schema = new Schema<IMosesQuote>(
     {
         id: { type: Number, required: true, unique: true },
         content: { type: String, required: true },
@@ -16,4 +10,4 @@ const schema = new Schema<IQuote>(
     { timestamps: true, versionKey: false }
 );
 
-export default model<IQuote>("moses-quotes", schema);
+export default model<IMosesQuote>("moses.quotes", schema, "moses.quotes");
