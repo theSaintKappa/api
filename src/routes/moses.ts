@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import { Elysia, t } from "elysia";
 import { PipelineStage } from "mongoose";
 import { IMosesPic, IMosesQuote } from "../db";
+=======
+import { t, type Elysia } from "elysia";
+import type { PipelineStage } from "mongoose";
+import type { IMosesPic, IMosesQuote } from "../db";
+>>>>>>> docker
 import MosesPic from "../models/pic.schema";
 import MosesQuote from "../models/quote.schema";
 
@@ -32,7 +38,11 @@ const moses = (app: Elysia) =>
             {
                 query: querySchema,
                 detail: { tags, summary: "Get all the Moses quotes." },
+<<<<<<< HEAD
             }
+=======
+            },
+>>>>>>> docker
         )
         .get(
             "/quotes/random",
@@ -43,7 +53,11 @@ const moses = (app: Elysia) =>
                 const quote = await MosesQuote.aggregate<IMosesQuote>(pipeline);
                 return quote[0];
             },
+<<<<<<< HEAD
             { detail: { tags, summary: "Get a random Moses quote." } }
+=======
+            { detail: { tags, summary: "Get a random Moses quote." } },
+>>>>>>> docker
         )
 
         .get(
@@ -63,7 +77,11 @@ const moses = (app: Elysia) =>
             {
                 query: querySchema,
                 detail: { tags, summary: "Get all the Moses pics." },
+<<<<<<< HEAD
             }
+=======
+            },
+>>>>>>> docker
         )
         .get(
             "/pics/random",
@@ -74,7 +92,11 @@ const moses = (app: Elysia) =>
                 const pic = await MosesPic.aggregate<IMosesPic>(pipeline);
                 return pic[0];
             },
+<<<<<<< HEAD
             { detail: { tags, summary: "Get a random Moses pic." } }
+=======
+            { detail: { tags, summary: "Get a random Moses pic." } },
+>>>>>>> docker
         );
 
 export default moses;

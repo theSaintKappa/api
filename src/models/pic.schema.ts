@@ -1,5 +1,9 @@
 import { Schema, model } from "mongoose";
+<<<<<<< HEAD
 import { IMosesPic } from "../db";
+=======
+import type { IMosesPic } from "../db";
+>>>>>>> docker
 
 const schema = new Schema<IMosesPic>(
     {
@@ -14,7 +18,11 @@ const schema = new Schema<IMosesPic>(
         },
         contentType: { type: String, required: true },
     },
+<<<<<<< HEAD
     { timestamps: true, versionKey: false }
+=======
+    { timestamps: true, versionKey: false },
+>>>>>>> docker
 );
 
 export default model<IMosesPic>("moses.pics", schema, "moses.pics");

@@ -17,11 +17,16 @@ const app: Elysia = new Elysia()
             duration: 60000,
             max: 100,
             responseMessage: "Whoa there, slow down. You can only make 100 requests per minute.",
+<<<<<<< HEAD
         })
+=======
+        }),
+>>>>>>> docker
     )
     .use(
         swagger({
             path: "/docs",
+<<<<<<< HEAD
             exclude: ["/", "/docs", "/docs/json", "/swagger"],
             documentation: {
                 info: {
@@ -39,6 +44,24 @@ const app: Elysia = new Elysia()
     .get("/swagger", ({ set }) => (set.redirect = "/docs"))
     .group("/moses", (app) => app.use(moses))
     .group("/vulcan", (app) => app.use(vulcan))
+=======
+            exclude: ["/", "/docs", "/docs/json"],
+            documentation: {
+                info: {
+                    title: packageJson.name,
+                    version: packageJson.version,
+                    description: `${packageJson.description}`,
+                    license: { name: packageJson.license },
+                },
+            },
+        }),
+    )
+    .use(html())
+    .use(staticPlugin())
+    .get("/", () => Bun.file("./public/index.html").text())
+    .group("/moses", (app) => app.use(moses))
+    // .group("/vulcan", (app) => app.use(vulcan))
+>>>>>>> docker
     .group("/albumCover", (app) => app.use(albumCover))
     .onError(({ code, set }) => {
         if (code === "NOT_FOUND") {
