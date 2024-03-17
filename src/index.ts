@@ -8,49 +8,26 @@ import packageJson from "../package.json";
 import "./db";
 import albumCover from "./routes/albumCover";
 import moses from "./routes/moses";
-import vulcan from "./routes/vulcan";
+// import vulcan from "./routes/vulcan";
 
-const app: Elysia = new Elysia()
+const app = new Elysia()
     .use(cors())
     .use(
         rateLimit({
             duration: 60000,
             max: 100,
             responseMessage: "Whoa there, slow down. You can only make 100 requests per minute.",
-<<<<<<< HEAD
-        })
-=======
         }),
->>>>>>> docker
     )
     .use(
         swagger({
             path: "/docs",
-<<<<<<< HEAD
-            exclude: ["/", "/docs", "/docs/json", "/swagger"],
-            documentation: {
-                info: {
-                    title: "SaintKappa API",
-                    version: packageJson.version,
-                    description: packageJson.description + "<br><br>Base address: `https://api.saintkappa.xyz`<br><br>",
-                    license: { name: packageJson.license },
-                },
-            },
-        })
-    )
-    .use(html())
-    .use(staticPlugin())
-    .get("/", () => Bun.file("index.html").text())
-    .get("/swagger", ({ set }) => (set.redirect = "/docs"))
-    .group("/moses", (app) => app.use(moses))
-    .group("/vulcan", (app) => app.use(vulcan))
-=======
             exclude: ["/", "/docs", "/docs/json"],
             documentation: {
                 info: {
                     title: packageJson.name,
                     version: packageJson.version,
-                    description: `${packageJson.description}`,
+                    description: packageJson.description,
                     license: { name: packageJson.license },
                 },
             },
@@ -61,7 +38,6 @@ const app: Elysia = new Elysia()
     .get("/", () => Bun.file("./public/index.html").text())
     .group("/moses", (app) => app.use(moses))
     // .group("/vulcan", (app) => app.use(vulcan))
->>>>>>> docker
     .group("/albumCover", (app) => app.use(albumCover))
     .onError(({ code, set }) => {
         if (code === "NOT_FOUND") {

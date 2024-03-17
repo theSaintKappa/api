@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { Elysia, t } from "elysia";
-=======
 import { t, type Elysia } from "elysia";
->>>>>>> docker
 import Jimp from "jimp";
 
 const tags = ["✨ Fun"];
@@ -29,11 +25,7 @@ const albumCover = (app: Elysia) =>
                 image: t.File({ type: "image" }),
             }),
             detail: { tags, summary: "Everything can be an album cover" },
-<<<<<<< HEAD
-        }
-=======
         },
->>>>>>> docker
     );
 
 export default albumCover;

@@ -1,11 +1,11 @@
-import { connect, Date, Document } from "mongoose";
+import { connect, type Date as Timestamp, type Document } from "mongoose";
 import secrets from "../secrets";
 
 connect(secrets.mongoUri, { dbName: "MosesDB" }).then(() => console.log("🥭 Connected to MongoDB"));
 
 export interface DocumentTimestamps {
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: Timestamp;
+    updatedAt: Timestamp;
 }
 
 export interface IMosesQuote extends Document, DocumentTimestamps {
