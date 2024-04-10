@@ -8,6 +8,7 @@ import packageJson from "../package.json";
 import "./db";
 import albumCover from "./routes/albumCover";
 import moses from "./routes/moses";
+import johndoe from "./routes/johndoe";
 // import vulcan from "./routes/vulcan";
 
 const app = new Elysia()
@@ -39,6 +40,7 @@ const app = new Elysia()
     .group("/moses", (app) => app.use(moses))
     // .group("/vulcan", (app) => app.use(vulcan))
     .group("/albumCover", (app) => app.use(albumCover))
+    .group("/johndoe", (app) => app.use(johndoe))
     .onError(({ code, set }) => {
         if (code === "NOT_FOUND") {
             set.status = 404;

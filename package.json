@@ -1,33 +1,34 @@
 {
-    "name": "@saintkappa/api",
-    "version": "0.4.0",
-    "description": "Welcome to the playground of whimsical data exchange! Dive into the world of my REST API, crafted with the magic of Elysia.js and Bun. With a sprinkle of coding sorcery, this API brings forth a realm where fetching data feels like a delightful adventure. Whether you're seeking quirky facts or curious insights, embark on a journey through endpoints as enchanting as they are efficient. Unleash your imagination, for here, every request is a ticket to a realm where fun meets functionality!",
-    "author": {
-        "name": "SaintKappa",
-        "url": "https://github.com/theSaintKappa"
-    },
-    "license": "BSD-2-Clause",
-    "module": "src/index.ts",
-    "scripts": {
-        "dev": "NODE_ENV=development bun run --watch .",
-        "inspect": "NODE_ENV=development bun run --inspect .",
-        "start": "NODE_ENV=production bun run ."
-    },
-    "dependencies": {
-        "@elysiajs/cors": "^1.0.0",
-        "@elysiajs/html": "^1.0.0",
-        "@elysiajs/static": "^1.0.0",
-        "@elysiajs/swagger": "^1.0.0",
-        "elysia": "^1.0.0",
-        "elysia-rate-limit": "^2.2.0",
-        "jimp": "^0.22.12",
-        "mongoose": "^8.2.2",
-        "vulcan-api-js": "^3.5.3"
-    },
-    "devDependencies": {
-        "bun-types": "latest"
-    },
-    "bun-create": {
-        "start": "bun run src/index.ts"
-    }
+  "name": "@saintkappa/api",
+  "version": "0.4.0",
+  "description": "Welcome to the playground of whimsical data exchange! Dive into the world of my REST API, crafted with the magic of Elysia.js and Bun. With a sprinkle of coding sorcery, this API brings forth a realm where fetching data feels like a delightful adventure. Whether you're seeking quirky facts or curious insights, embark on a journey through endpoints as enchanting as they are efficient. Unleash your imagination, for here, every request is a ticket to a realm where fun meets functionality!",
+  "author": {
+    "name": "SaintKappa",
+    "url": "https://github.com/theSaintKappa"
+  },
+  "license": "BSD-2-Clause",
+  "module": "src/index.ts",
+  "scripts": {
+    "dev": "NODE_ENV=development bun run --watch .",
+    "inspect": "NODE_ENV=development bun run --inspect .",
+    "start": "NODE_ENV=production bun run ."
+  },
+  "dependencies": {
+    "@elysiajs/cors": "^1.0.0",
+    "@elysiajs/html": "^1.0.0",
+    "@elysiajs/static": "^1.0.0",
+    "@elysiajs/swagger": "^1.0.0",
+    "elysia": "^1.0.0",
+    "elysia-rate-limit": "^2.2.0",
+    "jimp": "^0.22.12",
+    "mongoose": "^8.2.2",
+    "vulcan-api-js": "^3.5.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.6.4",
+    "bun-types": "latest"
+  },
+  "bun-create": {
+    "start": "bun run src/index.ts"
+  }
 }
