@@ -19,10 +19,9 @@
     "@elysiajs/static": "^1.0.0",
     "@elysiajs/swagger": "^1.0.0",
     "elysia": "^1.0.0",
-    "elysia-rate-limit": "^2.2.0",
+    "elysia-rate-limit": "^3.2.1",
     "jimp": "^0.22.12",
-    "mongoose": "^8.2.2",
-    "vulcan-api-js": "^3.5.3"
+    "mongoose": "^8.2.2"
   },
   "devDependencies": {
     "@biomejs/biome": "1.6.4",

@@ -9,7 +9,6 @@ import "./db";
 import albumCover from "./routes/albumCover";
 import moses from "./routes/moses";
 import johndoe from "./routes/johndoe";
-// import vulcan from "./routes/vulcan";
 
 const app = new Elysia()
     .use(cors())
@@ -38,7 +37,6 @@ const app = new Elysia()
     .use(staticPlugin())
     .get("/", () => Bun.file("./public/index.html").text())
     .group("/moses", (app) => app.use(moses))
-    // .group("/vulcan", (app) => app.use(vulcan))
     .group("/albumCover", (app) => app.use(albumCover))
     .group("/johndoe", (app) => app.use(johndoe))
     .onError(({ code, set }) => {

@@ -1,7 +1,6 @@
 import { connect, type Document, type Date as Timestamp } from "mongoose";
-import secrets from "./env";
 
-connect(secrets.mongoUri, { dbName: "MosesDB" }).then(() => console.log("🥭 Connected to MongoDB"));
+connect(process.env.MONGO_URI, { dbName: "MosesDB" }).then(() => console.log("🥭 Connected to MongoDB"));
 
 export interface DocumentTimestamps {
     createdAt: Timestamp;
