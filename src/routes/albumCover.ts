@@ -1,4 +1,4 @@
-import { t, type Elysia } from "elysia";
+import { type Elysia, t } from "elysia";
 import Jimp from "jimp";
 
 const tags = ["✨ Fun"];

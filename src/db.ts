@@ -1,4 +1,4 @@
-import { connect, type Document, type Date as Timestamp } from "mongoose";
+import { type Document, type Date as Timestamp, connect } from "mongoose";
 
 connect(process.env.MONGO_URI, { dbName: "MosesDB" }).then(() => console.log("🥭 Connected to MongoDB"));
 

@@ -8,19 +8,21 @@ const tags = ["Ⓜ️ Moses"];
 const query = t.Object({
     id: t.Optional(t.Numeric()),
     sort: t.Optional(t.Union([t.Literal("asc"), t.Literal("desc")])),
+    sample: t.Optional(t.Union([t.Numeric(), t.Literal("all")])),
     limit: t.Optional(t.Numeric()),
 });
-const excludeFields: PipelineStage = { $project: { _id: 0 } };
+const excludeStage: PipelineStage = { $project: { _id: 0 } };
 
 const moses = (app: Elysia) =>
     app
         .get(
             "/quotes",
             async ({ query }) => {
-                const pipeline: PipelineStage[] = [excludeFields, { $sample: { size: Number.MAX_SAFE_INTEGER } }];
+                const pipeline: PipelineStage[] = [excludeStage];
 
                 if (query.id) pipeline.push({ $match: { id: query.id } });
                 if (query.sort) pipeline.push({ $sort: { id: query.sort === "asc" ? 1 : -1 } });
+                if (query.sample) pipeline.push({ $sample: { size: query.sample === "all" ? Number.MAX_SAFE_INTEGER : query.sample } });
                 if (query.limit) pipeline.push({ $limit: query.limit });
 
                 const quotes = await MosesQuote.aggregate<IMosesQuote>(pipeline);
@@ -31,8 +33,7 @@ const moses = (app: Elysia) =>
         .get(
             "/quotes/random",
             async () => {
-                const pipeline: PipelineStage[] = [excludeFields];
-                pipeline.push({ $sample: { size: 1 } });
+                const pipeline: PipelineStage[] = [excludeStage, { $sample: { size: 1 } }];
 
                 const quote = await MosesQuote.aggregate<IMosesQuote>(pipeline);
                 return quote[0];
@@ -43,10 +44,11 @@ const moses = (app: Elysia) =>
         .get(
             "/pics",
             async ({ query }) => {
-                const pipeline: PipelineStage[] = [excludeFields, { $sample: { size: Number.MAX_SAFE_INTEGER } }];
+                const pipeline: PipelineStage[] = [excludeStage];
 
                 if (query.id) pipeline.push({ $match: { id: query.id } });
                 if (query.sort) pipeline.push({ $sort: { createdAt: query.sort === "asc" ? 1 : -1 } });
+                if (query.sample) pipeline.push({ $sample: { size: query.sample === "all" ? Number.MAX_SAFE_INTEGER : query.sample } });
                 if (query.limit) pipeline.push({ $limit: query.limit });
 
                 const pics = await MosesPic.aggregate<IMosesPic>(pipeline);
@@ -57,8 +59,7 @@ const moses = (app: Elysia) =>
         .get(
             "/pics/random",
             async ({ query, redirect }) => {
-                const pipeline: PipelineStage[] = [excludeFields];
-                pipeline.push({ $sample: { size: 1 } });
+                const pipeline: PipelineStage[] = [excludeStage, { $sample: { size: 1 } }];
 
                 const pic = await MosesPic.aggregate<IMosesPic>(pipeline);
                 return query.redirect ? redirect(pic[0].url) : pic[0];
