@@ -41,7 +41,6 @@
     { "first": "Jonquil", "last": "Von Haggerston", "tags": "weird", "bio": "West Londoner." },
     { "first": "Godfrey", "last": "Warbler", "tags": "weird", "bio": "Priest. Deepest voice in the county." },
     { "first": "Guy", "last": "Mann", "tags": "weird", "bio": "Effeminate." },
-
     { "first": "Brandon", "last": "Guidelines", "tags": "pun", "bio": "Inflexible. Outmoded. Crass." },
     { "first": "Sue", "last": "Shei", "tags": "pun", "bio": "Allergic to rice." },
     { "first": "Ingredia", "last": "Nutrisha", "tags": "pun", "bio": "Fitness fanatic." },
@@ -74,7 +73,6 @@
     { "first": "Ruüd", "last": "van Driver", "tags": "pun", "bio": "Fixie bike enthusiast." },
     { "first": "Theodore", "last": "Handle", "tags": "pun", "bio": "Hates DIY." },
     { "first": "Hilary", "last": "Ouse", "tags": "pun", "bio": "No sense of humour." },
-    { "first": "Dominic", "last": "L. Ement", "tags": "pun", "bio": "Ticket inspector." },
     { "first": "Hugh", "last": "Saturation", "tags": "pun", "bio": "Rainbow chaser." },
     { "first": "Jackson", "last": "Pot", "tags": "pun", "bio": "Gambling addict." },
     { "first": "Elon", "last": "Gated", "tags": "pun", "bio": "Rotund astronaut. Drives diesel pickup." },
@@ -82,11 +80,9 @@
     { "first": "Jim", "last": "Séchen", "tags": "pun", "bio": "Wimp." },
     { "first": "Hugh", "last": "Millie-Yate", "tags": "pun", "bio": "High self-esteem." },
     { "first": "Joss", "last": "Sticks", "tags": "pun", "bio": "Non-smoker." },
-    { "first": "Thomas", "last": "R. Toe", "tags": "pun", "bio": "Butcher." },
     { "first": "Miles", "last": "Tone", "tags": "pun", "bio": "Jazz music project manager." },
     { "first": "Ravi", "last": "O'Leigh", "tags": "pun", "bio": "Allergic to pasta." },
     { "first": "Barry", "last": "Tone", "tags": "pun", "bio": "Falsetto." },
-
     { "first": "Anna", "last": "Tomica-Leigh", "tags": "pun", "bio": "Anatomist." },
     { "first": "Claire", "last": "Voyant", "tags": "pun", "bio": "Sceptic." },
     { "first": "Scott", "last": "Chegg", "tags": "pun", "bio": "Health enthusiast." },
