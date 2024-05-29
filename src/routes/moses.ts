@@ -5,12 +5,21 @@ import MosesPic from "../models/pic.schema";
 import MosesQuote from "../models/quote.schema";
 
 const tags = ["Ⓜ️ Moses"];
-const query = t.Object({
+
+const quotesQuery = t.Object({
     id: t.Optional(t.Numeric()),
     sort: t.Optional(t.Union([t.Literal("asc"), t.Literal("desc")])),
     sample: t.Optional(t.Union([t.Numeric(), t.Literal("all")])),
     limit: t.Optional(t.Numeric()),
 });
+
+const imagesQuery = t.Object({
+    id: t.Optional(t.Numeric()),
+    sample: t.Optional(t.Union([t.Numeric(), t.Literal("all")])),
+    limit: t.Optional(t.Numeric()),
+    excludeTypes: t.Optional(t.String()),
+});
+
 const excludeStage: PipelineStage = { $project: { _id: 0 } };
 
 const moses = (app: Elysia) =>
@@ -28,7 +37,7 @@ const moses = (app: Elysia) =>
                 const quotes = await MosesQuote.aggregate<IMosesQuote>(pipeline);
                 return quotes;
             },
-            { query, detail: { tags, summary: "Get all the Moses quotes" } },
+            { query: quotesQuery, detail: { tags, summary: "Get all the Moses quotes" } },
         )
         .get(
             "/quotes/random",
@@ -46,15 +55,15 @@ const moses = (app: Elysia) =>
             async ({ query }) => {
                 const pipeline: PipelineStage[] = [excludeStage];
 
+                if (query.excludeTypes) pipeline.push({ $match: { contentType: { $nin: query.excludeTypes.split(",") } } });
                 if (query.id) pipeline.push({ $match: { id: query.id } });
-                if (query.sort) pipeline.push({ $sort: { createdAt: query.sort === "asc" ? 1 : -1 } });
                 if (query.sample) pipeline.push({ $sample: { size: query.sample === "all" ? Number.MAX_SAFE_INTEGER : query.sample } });
                 if (query.limit) pipeline.push({ $limit: query.limit });
 
                 const pics = await MosesPic.aggregate<IMosesPic>(pipeline);
                 return pics;
             },
-            { query, detail: { tags, summary: "Get all the Moses pics" } },
+            { query: imagesQuery, detail: { tags, summary: "Get all the Moses pics" } },
         )
         .get(
             "/pics/random",
