@@ -1,33 +1,33 @@
 {
-    "name": "@saintkappa/api",
-    "version": "0.5.4",
-    "description": "REST API for personal use, built with Elysia.js & Bun",
-    "author": {
-        "name": "SaintKappa",
-        "url": "https://github.com/theSaintKappa"
-    },
-    "license": "BSD-2-Clause",
-    "module": "src/index.ts",
-    "scripts": {
-        "dev": "NODE_ENV=development bun run --watch .",
-        "inspect": "NODE_ENV=development bun run --inspect .",
-        "start": "NODE_ENV=production bun run ."
-    },
-    "dependencies": {
-        "@elysiajs/cors": "^1.0.0",
-        "@elysiajs/html": "^1.0.2",
-        "@elysiajs/static": "^1.0.3",
-        "@elysiajs/swagger": "^1.0.5",
-        "elysia": "^1.0.20",
-        "elysia-rate-limit": "^4.0.0",
-        "jimp": "^0.22.12",
-        "mongoose": "^8.3.4"
-    },
-    "devDependencies": {
-        "@biomejs/biome": "1.7.3",
-        "bun-types": "latest"
-    },
-    "bun-create": {
-        "start": "bun run src/index.ts"
-    }
+  "name": "@saintkappa/api",
+  "version": "0.5.4",
+  "description": "REST API for personal use, built with Elysia.js & Bun",
+  "author": {
+    "name": "SaintKappa",
+    "url": "https://github.com/theSaintKappa"
+  },
+  "license": "BSD-2-Clause",
+  "module": "src/index.ts",
+  "scripts": {
+    "dev": "NODE_ENV=development bun run --watch .",
+    "inspect": "NODE_ENV=development bun run --inspect .",
+    "start": "NODE_ENV=production bun run ."
+  },
+  "dependencies": {
+    "@elysiajs/cors": "^1.0.2",
+    "@elysiajs/html": "^1.0.2",
+    "@elysiajs/static": "^1.0.3",
+    "@elysiajs/swagger": "^1.0.5",
+    "elysia": "^1.0.22",
+    "elysia-rate-limit": "^4.1.0",
+    "jimp": "^0.22.12",
+    "mongoose": "^8.4.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.0",
+    "bun-types": "^1.1.12"
+  },
+  "bun-create": {
+    "start": "bun run src/index.ts"
+  }
 }
