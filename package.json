@@ -14,18 +14,18 @@
     "start": "NODE_ENV=production bun run ."
   },
   "dependencies": {
-    "@elysiajs/cors": "^1.0.2",
-    "@elysiajs/html": "^1.0.2",
-    "@elysiajs/static": "^1.0.3",
-    "@elysiajs/swagger": "^1.0.5",
-    "elysia": "^1.0.22",
+    "@elysiajs/cors": "^1.1.0",
+    "@elysiajs/html": "^1.1.0",
+    "@elysiajs/static": "^1.1.0",
+    "@elysiajs/swagger": "^1.1.0",
+    "elysia": "^1.1.2",
     "elysia-rate-limit": "^4.1.0",
     "jimp": "^0.22.12",
-    "mongoose": "^8.4.1"
+    "mongoose": "^8.5.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.8.0",
-    "bun-types": "^1.1.12"
+    "@biomejs/biome": "1.8.3",
+    "bun-types": "^1.1.20"
   },
   "bun-create": {
     "start": "bun run src/index.ts"

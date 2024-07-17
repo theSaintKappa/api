@@ -5,18 +5,20 @@ import { swagger } from "@elysiajs/swagger";
 import { Elysia } from "elysia";
 import { rateLimit } from "elysia-rate-limit";
 import packageJson from "../package.json";
-import "./db";
+import { connectMongo } from "./db";
 import albumCover from "./routes/albumCover";
 import johndoe from "./routes/johndoe";
 import moses from "./routes/moses";
 
+await connectMongo();
+
 const app = new Elysia()
     .use(cors())
-    .use(rateLimit({ duration: 60000, max: 100, errorResponse: "Whoa there, slow down. You can only make 100 requests per minute." }))
+    .use(rateLimit({ duration: 60000, max: 60, errorResponse: "Whoa there, slow down. You can only make 60 requests per minute." }))
     .use(
         swagger({
             path: "/docs",
-            exclude: ["/", "/docs", "/docs/json"],
+            exclude: ["/", "/docs", "/docs/json", "/public/public"],
             documentation: {
                 info: {
                     title: "SaintKappa API",

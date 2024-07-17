@@ -14,7 +14,7 @@ const quotesQuery = t.Object({
 });
 
 const imagesQuery = t.Object({
-    id: t.Optional(t.Numeric()),
+    id: t.Optional(t.String()),
     sample: t.Optional(t.Union([t.Numeric(), t.Literal("all")])),
     limit: t.Optional(t.Numeric()),
     excludeTypes: t.Optional(t.String()),

@@ -1,5 +1,5 @@
 import type { Elysia } from "elysia";
-import data from "./johndoe.json";
+import data from "../../public/johndoe.json";
 
 const tags = ["✨ Fun"];
 
