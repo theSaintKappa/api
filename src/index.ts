@@ -36,6 +36,7 @@ const app = new Elysia()
     .group("/moses", (app) => app.use(moses))
     .group("/albumCover", (app) => app.use(albumCover))
     .group("/johndoe", (app) => app.use(johndoe))
+    .get("/health", () => ({ status: "ok" }))
     .listen(3000);
 
 console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);
