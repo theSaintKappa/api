@@ -1,3 +1,7 @@
+import { connectMongo } from "@/db";
+import albumCover from "@/routes/albumCover";
+import johndoe from "@/routes/johndoe";
+import moses from "@/routes/moses";
 import { cors } from "@elysiajs/cors";
 import { html } from "@elysiajs/html";
 import { staticPlugin } from "@elysiajs/static";
@@ -5,10 +9,6 @@ import { swagger } from "@elysiajs/swagger";
 import { Elysia } from "elysia";
 import { rateLimit } from "elysia-rate-limit";
 import packageJson from "../package.json";
-import { connectMongo } from "./db";
-import albumCover from "./routes/albumCover";
-import johndoe from "./routes/johndoe";
-import moses from "./routes/moses";
 
 await connectMongo();
 

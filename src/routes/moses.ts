@@ -1,8 +1,7 @@
+import { type IMosesPic, MosesPic } from "@/models/pic.schema";
+import { type IMosesQuote, MosesQuote } from "@/models/quote.schema";
 import { type Elysia, t } from "elysia";
 import type { PipelineStage } from "mongoose";
-import type { IMosesPic, IMosesQuote } from "../db";
-import MosesPic from "../models/pic.schema";
-import MosesQuote from "../models/quote.schema";
 
 const tags = ["Ⓜ️ Moses"];
 
