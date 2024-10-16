@@ -1,5 +1,5 @@
 import type { DocumentTimestamps } from "@/db";
-import { Schema, model } from "mongoose";
+import { type Document, Schema, model } from "mongoose";
 
 export interface IMosesPic extends Document, DocumentTimestamps {
     id: string;

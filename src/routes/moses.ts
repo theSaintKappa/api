@@ -1,5 +1,5 @@
-import { type IMosesPic, MosesPic } from "@/models/pic.schema";
-import { type IMosesQuote, MosesQuote } from "@/models/quote.schema";
+import { type IMosesPic, MosesPic } from "@/models/MosesPic";
+import { type IMosesQuote, MosesQuote } from "@/models/MosesQuote";
 import { type Elysia, t } from "elysia";
 import type { PipelineStage } from "mongoose";
 

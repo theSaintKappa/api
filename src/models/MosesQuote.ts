@@ -1,5 +1,6 @@
 import type { DocumentTimestamps } from "@/db";
-import { Schema, model } from "mongoose";
+import { type Document, Schema, model } from "mongoose";
+
 export interface IMosesQuote extends Document, DocumentTimestamps {
     id: number;
     content: string;
