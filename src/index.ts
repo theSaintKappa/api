@@ -14,11 +14,11 @@ await connectMongo();
 
 const app = new Elysia()
     .use(cors())
-    .use(rateLimit({ duration: 60000, max: 60, errorResponse: "Whoa there, slow down. You can only make 60 requests per minute." }))
+    .use(rateLimit({ duration: 60000, max: 2, errorResponse: "Whoa there, slow down. You can only make 60 requests per minute." }))
     .use(
         swagger({
             path: "/docs",
-            exclude: ["/", "/docs", "/docs/json", "/public/public"],
+            exclude: ["/"],
             documentation: {
                 info: {
                     title: "SaintKappa API",

@@ -1,5 +1,5 @@
 import { type Elysia, t } from "elysia";
-import Jimp from "jimp";
+import { Jimp, JimpMime } from "jimp";
 
 const tags = ["✨ Fun"];
 
@@ -8,17 +8,17 @@ const albumCover = (app: Elysia) =>
         "/",
         async ({ body }) => {
             const buffer = await body.image.arrayBuffer();
-            const image = await Jimp.read(Buffer.from(buffer));
-            const overlay = await Jimp.read("https://raw.githubusercontent.com/theSaintKappa/api-legacy/master/public/overlay.png");
+            const image = await Jimp.fromBuffer(Buffer.from(buffer));
+            const overlay = await Jimp.read("public/overlay.png");
 
-            image.cover(1024, 1024);
-            image.brightness(-0.25);
+            image.cover({ w: 1024, h: 1024 });
+            image.brightness(0.75);
             image.contrast(0.15);
             image.composite(overlay, 0, 0);
 
-            const compositedImage = await image.getBufferAsync(Jimp.MIME_PNG);
+            const compositedImage = await image.getBuffer(JimpMime.png);
 
-            return new Response(Buffer.from(compositedImage), { headers: { "Content-Type": Jimp.MIME_PNG } });
+            return new Response(compositedImage, { headers: { "Content-Type": JimpMime.png } });
         },
         {
             body: t.Object({
