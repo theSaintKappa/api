@@ -1,4 +1,4 @@
-import type { DocumentTimestamps } from "@/db";
+import type { DocumentTimestamps } from "@/db/mongo";
 import { type Document, Schema, model } from "mongoose";
 
 export interface IMosesQuote extends Document, DocumentTimestamps {

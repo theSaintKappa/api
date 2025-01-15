@@ -1,20 +1,23 @@
-import { connectMongo } from "@/db";
-import albumCover from "@/routes/albumCover";
-import johndoe from "@/routes/johndoe";
-import moses from "@/routes/moses";
+import packageJson from "@/../package.json";
+import { connectMongo } from "@/db/mongo";
+import { connectRedis } from "@/db/redis";
+import { albumCover } from "@/routes/albumCover";
+import { johndoe } from "@/routes/johndoe";
+import { linkSnip } from "@/routes/linkSnip";
+import { moses } from "@/routes/moses";
 import { cors } from "@elysiajs/cors";
 import { html } from "@elysiajs/html";
 import { staticPlugin } from "@elysiajs/static";
 import { swagger } from "@elysiajs/swagger";
 import { Elysia } from "elysia";
 import { rateLimit } from "elysia-rate-limit";
-import packageJson from "../package.json";
 
 await connectMongo();
+await connectRedis();
 
 const app = new Elysia()
     .use(cors())
-    .use(rateLimit({ duration: 60000, max: 2, errorResponse: "Whoa there, slow down. You can only make 60 requests per minute." }))
+    .use(rateLimit({ duration: 60000, max: 60, errorResponse: "Whoa there, slow down. You can only make 60 requests per minute." }))
     .use(
         swagger({
             path: "/docs",
@@ -32,8 +35,9 @@ const app = new Elysia()
     )
     .use(html())
     .use(staticPlugin())
-    .get("/", () => Bun.file("./public/index.html").text())
+    .get("/", () => Bun.file("public/index.html").text())
     .group("/moses", (app) => app.use(moses))
+    .group("/linkSnip", (app) => app.use(linkSnip))
     .group("/albumCover", (app) => app.use(albumCover))
     .group("/johndoe", (app) => app.use(johndoe))
     .get("/health", () => ({ status: "ok" }))

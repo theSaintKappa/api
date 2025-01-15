@@ -1,6 +1,6 @@
 {
   "name": "@saintkappa/api",
-  "version": "0.5.5",
+  "version": "0.6.0",
   "description": "REST API for personal use, built with Elysia.js & Bun",
   "author": {
     "name": "SaintKappa",
@@ -21,7 +21,9 @@
     "elysia": "latest",
     "elysia-rate-limit": "^4.1.0",
     "jimp": "^1.6.0",
-    "mongoose": "^8.9.5"
+    "mongoose": "^8.9.5",
+    "nanoid": "^5.0.9",
+    "redis": "^4.7.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
