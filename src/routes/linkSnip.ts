@@ -26,7 +26,7 @@ export const linkSnip = new Elysia().post(
             return { id: newId, url: redirectUrl + newId, redirectTo: url, alreadyStored: false };
         }
 
-        if (/[^\w-]/.test(id) || id.length > 64) return error(400, { message: "ID only accepts alphanumeric characters, underscores, hyphens, and must be less than 64 characters" });
+        if (!/^[a-zA-Z0-9_-]+$/.test(id) || id.length < 3 || id.length > 64) return error(400, { message: "ID only accepts alphanumeric characters, underscores, hyphens, and must be between 3 and 64 characters" });
 
         const existingUrl = await client.get(`id:${id}`);
         if (existingUrl) {
